@@ -7,7 +7,6 @@ enable_requests_logging()
 params = {
     'action': 'registerUpload',
 }
-
 body = {
   "registerUploadRequest": {
     "owner": "urn:li:company:" + str(COMPANY_ID),
@@ -18,8 +17,14 @@ body = {
   }
 }
 
-# response = client.get('adInMailContentsV2', params=params)
-response = client.post('assets', params=params, json=body)
-content = response.json()
+registerResponse = client.post('assets', params=params, json=body)
+content = registerResponse.json()
 import json
 json.dumps(content)
+
+uploadRequest = content['value']['uploadMechanism']['com.linkedin.digitalmedia.uploading.MediaUploadHttpRequest']
+headers = uploadRequest['headers']
+uploadUrl = uploadRequest['uploadUrl']
+
+print('headers: ' + json.dumps(headers))
+print('uploadUrl: ' + json.dumps(uploadUrl))
