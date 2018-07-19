@@ -9,6 +9,9 @@ def remove_prefix(text, prefix):
         return text[len(prefix):]
     return text
 
+def trimMediaAssetURN(urn):
+  return remove_prefix(urn, 'urn:li:digitalmediaAsset:')
+
 params = {
     'action': 'registerUpload',
 }
@@ -30,10 +33,15 @@ json.dumps(content)
 uploadRequestFromLI = content['value']['uploadMechanism']['com.linkedin.digitalmedia.uploading.MediaUploadHttpRequest']
 headers = uploadRequestFromLI['headers']
 uploadUrl = uploadRequestFromLI['uploadUrl']
+asset = content['value']['asset']
+assetId = trimMediaAssetURN(asset)
 
 print('headers: ' + json.dumps(headers))
 print('uploadUrl: ' + json.dumps(uploadUrl))
+print ('assetId: ' + assetId)
 
 files = {'file': ("image.png", open('/home/joeklonowski/voxsupFrontend2/image.png', 'rb'), 'image/png')}
 shortUrl = remove_prefix(uploadUrl, 'https://api.linkedin.com/')
 uploadResponse = client.post(shortUrl, files=files)
+
+getResponse = client.get('assets/' + assetId)
