@@ -2,7 +2,7 @@ from voxsup.api.client.linkedin import LinkedInClient as Client
 account_id = 500735271 # VoxSup Inc
 COMPANY_ID = 3026918 # VoxSup Inc
 client = Client(context={'account_id': account_id})
-enable_requests_logging()
+# enable_requests_logging()
 
 def remove_prefix(text, prefix):
     if text.startswith(prefix):
@@ -38,10 +38,9 @@ assetId = trimMediaAssetURN(asset)
 
 print('headers: ' + json.dumps(headers))
 print('uploadUrl: ' + json.dumps(uploadUrl))
-print ('assetId: ' + assetId)
+print('assetId: ' + assetId)
 
 files = {'file': ("image.png", open('/home/joeklonowski/voxsupFrontend2/image.png', 'rb'), 'image/png')}
-shortUrl = remove_prefix(uploadUrl, 'https://api.linkedin.com/')
-uploadResponse = client.post(shortUrl, files=files)
+uploadResponse = client.post(uploadUrl, files=files)
 
 getResponse = client.get('assets/' + assetId)
