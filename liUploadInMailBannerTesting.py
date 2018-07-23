@@ -13,10 +13,10 @@ def remove_prefix(text, prefix):
 def trimMediaAssetURN(urn):
   return remove_prefix(urn, 'urn:li:digitalmediaAsset:')
 
-params = {
+registerParams = {
     'action': 'registerUpload',
 }
-body = {
+registerBody = {
   "registerUploadRequest": {
     "owner": "urn:li:company:" + str(COMPANY_ID),
     "serviceRelationships":[{"relationshipType":"OWNER","identifier":"urn:li:userGeneratedContent"}],
@@ -25,8 +25,11 @@ body = {
     ]
   }
 }
+registerHeaders = {
+  "Content-Type": "application/json"
+}
 
-registerResponse = client.post('assets', params=params, json=body)
+registerResponse = client.post('assets', params=registerParams, json=registerBody, headers=registerHeaders)
 content = registerResponse.json()
 import json
 json.dumps(content)
@@ -41,11 +44,14 @@ print('headers: ' + json.dumps(headers))
 print('uploadUrl: ' + json.dumps(uploadUrl))
 print('assetId: ' + assetId)
 
+uploadHeaders = {
+  'Content-Type': 'image/png'
+}
 files = {'file': ("image.png", open('/home/joeklonowski/voxsupFrontend2/image.png', 'rb'), 'image/png')}
-uploadResponse = client.put(uploadUrl, files=files)
+uploadResponse = client.put(uploadUrl, files=files, headers=uploadHeaders)
 
 getResponse = client.get('assets/' + assetId)
-getReponse.json()
+getResponse.json()
 
 updateBody = {
   "patch": {
