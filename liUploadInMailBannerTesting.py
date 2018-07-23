@@ -3,7 +3,7 @@ account_id = 500735271 # VoxSup Inc
 COMPANY_ID = 3026918 # VoxSup Inc
 INMAIL_ID = 1225113 # Testing preview
 client = Client(context={'account_id': account_id})
-enable_requests_logging()
+# enable_requests_logging()
 
 def remove_prefix(text, prefix):
     if text.startswith(prefix):
@@ -63,5 +63,8 @@ updateBody = {
 updateResponse = client.post('adInMailContentsV2/' + str(INMAIL_ID), json=updateBody)
 updateResponse.json()
 
-getInMailResponse = client.get('adInMailContentsV2/' + str(INMAIL_ID))
+getInMailParams = {
+  'projection': '(id,subContent(com.linkedin.ads.AdInMailStandardSubContent(adUnitV2~:playableStreams)))'
+}
+getInMailResponse = client.get('adInMailContentsV2/' + str(INMAIL_ID), params=getInMailParams)
 getInMailResponse.json()
