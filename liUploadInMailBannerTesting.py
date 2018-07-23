@@ -42,7 +42,7 @@ print('uploadUrl: ' + json.dumps(uploadUrl))
 print('assetId: ' + assetId)
 
 files = {'file': ("image.png", open('/home/joeklonowski/voxsupFrontend2/image.png', 'rb'), 'image/png')}
-uploadResponse = client.post(uploadUrl, files=files)
+uploadResponse = client.put(uploadUrl, files=files)
 
 getResponse = client.get('assets/' + assetId)
 getReponse.json()
