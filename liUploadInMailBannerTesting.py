@@ -1,8 +1,9 @@
 from voxsup.api.client.linkedin import LinkedInClient as Client
 account_id = 500735271 # VoxSup Inc
 COMPANY_ID = 3026918 # VoxSup Inc
+INMAIL_ID = 1225113 # Testing preview
 client = Client(context={'account_id': account_id})
-# enable_requests_logging()
+enable_requests_logging()
 
 def remove_prefix(text, prefix):
     if text.startswith(prefix):
@@ -44,3 +45,23 @@ files = {'file': ("image.png", open('/home/joeklonowski/voxsupFrontend2/image.pn
 uploadResponse = client.post(uploadUrl, files=files)
 
 getResponse = client.get('assets/' + assetId)
+getReponse.json()
+
+updateBody = {
+  "patch": {
+    "$set": {
+      "subContent": {
+        "com.linkedin.ads.AdInMailStandardSubContent": {
+          "actionText": "HMC",
+          "action": "https://www.hmc.edu/",
+          "adUnitV2": asset
+        }
+      }
+    }
+  }
+}
+updateResponse = client.post('adInMailContentsV2/' + str(INMAIL_ID), json=updateBody)
+updateResponse.json()
+
+getInMailResponse = client.get('adInMailContentsV2/' + str(INMAIL_ID))
+getInMailResponse.json()
