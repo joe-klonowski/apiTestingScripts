@@ -5,7 +5,8 @@ enable_requests_logging()
 
 params = {
     'ids': [930516],
-    'projection': '(results(*(*,subContent(*(*,adUnitV2~:playableStreams)))))',
+    # 'projection': '(results(*(*,subContent(*(*,adUnitV2~:playableStreams)))))',
+    'projection': '(results(*(*,sender(*,displayPictureV2~:playableStreams),subContent(*(*,adUnitV2~:playableStreams)))))',
 }
 response = client.get('adInMailContentsV2', params=params)
 response.json()
