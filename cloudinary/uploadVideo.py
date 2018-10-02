@@ -1,5 +1,6 @@
-import cloudinary
+from voxsup.cloudinary.client import Client as CloudinaryClient
 
 FILE_PATH = "/home/joeklonowski/testVideo.mp4"
 
-result = cloudinary.uploader.upload(FILE_PATH, resource_type="video")
+cloudinaryClient = CloudinaryClient()
+result = cloudinaryClient.uploader.upload(FILE_PATH, resource_type="video")
