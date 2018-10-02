@@ -1,0 +1,11 @@
+#!/bin/bash
+
+AUTH="Atza|IwEBINVAS6FpYj_7paeRGjS2PN7SqdF9u-EEPkKOWeNWCBFgZzRxzi5j2MG6pkI27NQB1D6fWgO29G12Iyx_hydVbH7j8xFw0nNx2Zq3R_wK1b9ZUVMsmA8Co6LjS19xHR2Zhim58X3l1EvMZbNAPKIjKOUAmUHctkJc2wrbGI_BIYhdlWgfuWmH5ZzPo76lPqfYbVBdXtG_g3FySHBV8Sb1eI-bzwcvXHdfAL_cMO4LCUSZxypTluoTDpXAE4dfmtsqa4Fa5-5ehECspfz-TkDwfXyK5yfrIY0RM13XXa7tupyJWFGkFQH3DgF7nIDaNSc11HBwKIpeXYwHvPn2h4-mcJT1GbZmkH6gjJj28PRHNs9m-JTSzQbOPfDStjAYRso8TjVAl6hySLXsPpxu5rGebQJPV2tnjGEfslUQ7BZIBQx7rcGbWd2n_0u3Q-YE9cPLZZBWKkoyFFFf06LuJRNGu_zClPzoY0OYaCPdB4pkcU12JARV42cjeVa4R_WswDwLcerGj_sv7CBgXyEz59ob-9gOeENNZWwnC2bA4klNFmIoxA581ASnJyFcVoSO2d-PmuuTa6nTH2Gff53u3UVz3E0n1WBUHxQrl1rNx3uqpWwFlTHRqGvoUyHUdfOuuFH9jljoWn80L5j_rOBc1NF9bhVu"
+KEYWORD_ID="196862097481071"
+PROFILE="188564931299575"
+
+curl \
+  -H "Content-Type: application/json" \
+  -H "Authorization: bearer $AUTH" \
+  -H "Amazon-Advertising-API-Scope: $PROFILE" \
+  https://advertising-api.amazon.com/v1/keywords/$KEYWORD_ID/bidRecommendations
